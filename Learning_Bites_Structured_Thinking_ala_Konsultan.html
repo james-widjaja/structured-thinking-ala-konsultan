@@ -65,6 +65,23 @@
             scrollbar-width: thin
         }
 
+        .featured-case-study .grid2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: stretch
+        }
+
+        .featured-case-study .grid2 > .card {
+            height: 100%
+        }
+
+        .featured-case-study .featured-overview-grid {
+            align-items: stretch
+        }
+
+        .featured-case-study .featured-overview-grid > .card {
+            height: 100%
+        }
+
         .featured-case-study main::-webkit-scrollbar {
             width: 8px
         }
@@ -115,7 +132,7 @@
         }
 
         h1 {
-            font-size: 58px;
+            font-size: clamp(42px, 3.5vw, 72px);
             line-height: .98;
             margin: 0 0 12px;
             font-weight: 900;
@@ -123,7 +140,7 @@
         }
 
         h2 {
-            font-size: 37px;
+            font-size: clamp(30px, 2.2vw, 44px);
             line-height: 1.04;
             margin: 0 0 12px;
             font-weight: 850;
@@ -131,7 +148,7 @@
         }
 
         h3 {
-            font-size: 23px;
+            font-size: clamp(20px, 1.45vw, 28px);
             line-height: 1.12;
             margin: 0 0 8px;
             font-weight: 800;
@@ -140,19 +157,19 @@
 
         p,
         li {
-            font-size: 20px;
+            font-size: clamp(17px, 1.25vw, 25px);
             line-height: 1.28;
             color: var(--text);
             margin: 7px 0
         }
 
         .small {
-            font-size: 13px;
+            font-size: clamp(12px, .8vw, 16px);
             color: var(--muted)
         }
 
         .kicker {
-            font-size: 14px;
+            font-size: clamp(12px, .9vw, 17px);
             letter-spacing: .16em;
             text-transform: uppercase;
             color: var(--cyan);
@@ -165,27 +182,27 @@
         }
 
         .hero-sub {
-            font-size: 27px;
+            font-size: clamp(24px, 1.7vw, 32px);
             color: #FDE68A;
             font-weight: 700
         }
 
         .prompt {
-            font-size: 34px;
+            font-size: clamp(28px, 2.2vw, 42px);
             line-height: 1.12;
             color: #FDE68A;
             font-weight: 900
         }
 
         .bigline {
-            font-size: 32px;
+            font-size: clamp(27px, 2vw, 38px);
             line-height: 1.15;
             font-weight: 850;
             color: #fff
         }
 
         .quote {
-            font-size: 34px;
+            font-size: clamp(28px, 2.2vw, 42px);
             line-height: 1.16;
             font-weight: 880;
             color: #FFF7ED;
@@ -227,7 +244,7 @@
             box-shadow: 0 24px 80px rgba(0, 0, 0, .33);
             backdrop-filter: blur(16px);
             border-radius: 24px;
-            padding: 20px
+            padding: clamp(16px, 1.2vw, 24px)
         }
 
         .center {
@@ -277,22 +294,22 @@
             padding: 8px 13px;
             border-radius: 999px;
             color: #E0F2FE;
-            font-size: 14px;
+            font-size: clamp(12px, .9vw, 17px);
             font-weight: 800
         }
 
         .footer-note {
-            font-size: 13px;
+            font-size: clamp(12px, .8vw, 16px);
             color: var(--muted)
         }
 
         .icon {
-            font-size: 48px;
+            font-size: clamp(38px, 3vw, 58px);
             filter: drop-shadow(0 14px 30px rgba(0, 0, 0, .35))
         }
 
         .story-title {
-            font-size: 34px;
+            font-size: clamp(28px, 2.2vw, 42px);
             font-weight: 900;
             line-height: 1;
             margin: 4px 0 10px
@@ -305,7 +322,7 @@
             padding: 11px 16px;
             margin-top: 10px;
             color: #CBD5E1;
-            font-size: 14px
+            font-size: clamp(12px, .9vw, 17px)
         }
 
         .note-box b {
@@ -332,11 +349,11 @@
             background: rgba(255, 255, 255, .10);
             border: 1px solid rgba(255, 255, 255, .16);
             font-weight: 850;
-            font-size: 23px
+            font-size: clamp(20px, 1.45vw, 28px)
         }
 
         .arrow {
-            font-size: 30px;
+            font-size: clamp(26px, 1.9vw, 36px);
             color: var(--cyan);
             font-weight: 900
         }
@@ -349,18 +366,18 @@
             border-radius: 999px;
             padding: 8px 12px;
             font-weight: 800;
-            font-size: 15px;
+            font-size: clamp(13px, .95vw, 18px);
             margin: 5px
         }
 
         .mini {
-            font-size: 15px;
+            font-size: clamp(13px, .95vw, 18px);
             color: #CBD5E1
         }
 
         .habit-card {
             display: grid;
-            grid-template-columns: .92fr 1.08fr;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 22px;
             align-items: stretch
         }
@@ -393,7 +410,7 @@
 
         .tree-root {
             text-align: center;
-            font-size: 23px;
+            font-size: clamp(20px, 1.45vw, 28px);
             font-weight: 900;
             padding: 14px;
             border-radius: 16px;
@@ -414,7 +431,7 @@
             background: rgba(255, 255, 255, .10);
             border: 1px solid rgba(255, 255, 255, .14);
             font-weight: 800;
-            font-size: 16px
+            font-size: clamp(14px, 1vw, 19px)
         }
 
         .template {
@@ -435,12 +452,12 @@
         .template b {
             display: block;
             color: #FDE68A;
-            font-size: 16px;
+            font-size: clamp(14px, 1vw, 19px);
             margin-bottom: 5px
         }
 
         .template span {
-            font-size: 13px;
+            font-size: clamp(12px, .8vw, 16px);
             color: #CBD5E1;
             line-height: 1.25
         }
@@ -477,7 +494,7 @@
             background: rgba(2, 6, 23, .82);
             color: #FDE68A;
             border: 1px solid rgba(255, 255, 255, .24);
-            font-size: 12px;
+            font-size: clamp(11px, .75vw, 15px);
             font-weight: 800;
             padding: 7px 10px;
             border-radius: 999px;
@@ -502,7 +519,7 @@
         }
 
         .stage {
-            font-size: 13px;
+            font-size: clamp(12px, .8vw, 16px);
             text-transform: uppercase;
             letter-spacing: .12em;
             color: #FDE68A;
@@ -511,7 +528,7 @@
         }
 
         .source {
-            font-size: 11px;
+            font-size: clamp(10px, .7vw, 14px);
             color: #94A3B8;
             margin-top: 8px
         }
@@ -549,7 +566,7 @@
             border-radius: 16px;
             padding: 10px 15px;
             cursor: pointer;
-            font-size: 18px
+            font-size: clamp(16px, 1.1vw, 22px)
         }
 
         .btn:hover {
@@ -573,7 +590,7 @@
         }
 
         .slide-count {
-            font-size: 14px;
+            font-size: clamp(12px, .9vw, 17px);
             color: #CBD5E1
         }
 
@@ -609,7 +626,7 @@
             color: white;
             border-radius: 999px;
             padding: 10px 15px;
-            font-size: 18px;
+            font-size: clamp(16px, 1.1vw, 22px);
             cursor: pointer
         }
 
@@ -620,7 +637,7 @@
             right: 32px;
             color: #CBD5E1;
             text-align: center;
-            font-size: 14px
+            font-size: clamp(12px, .9vw, 17px)
         }
 
         @media print {
@@ -757,7 +774,7 @@
                         <div class="story-title">Apollo 13: Thinking Under Pressure</div>
                     </div><span class="pill">Based on the 1995 film Apollo 13</span>
                 </div>
-                <div class="grid2">
+                <div class="grid3 featured-overview-grid">
                     <div class="card fragment">
                         <h3>The situation</h3>
                         <p>In Ron Howard's <i>Apollo 13</i>, an oxygen-tank explosion cripples the spacecraft on the way to the Moon. Jim Lovell, Fred Haise, and Jack Swigert must abandon the mission and find a way home.</p>
@@ -769,10 +786,10 @@
                         <div class="divider"></div>
                         <p class="prompt">The goal changes from landing on the Moon to bringing the crew home alive.</p>
                     </div>
-                </div>
-                <div class="card fragment" style="margin-top:18px">
-                    <h3>What the film shows</h3>
-                    <p>Technical expertise matters, but structured thinking makes expertise usable under pressure: define the problem, make uncertainty visible, separate workstreams, and keep every action tied to the survival objective.</p>
+                    <div class="card fragment">
+                        <h3>What the film shows</h3>
+                        <p>Technical expertise matters, but structured thinking makes expertise usable under pressure: define the problem, make uncertainty visible, separate workstreams, and keep every action tied to the survival objective.</p>
+                    </div>
                 </div>
             </main>
             <footer class="note-box fragment"><b>Facilitator prompt:</b> At the moment the explosion happens, what should the team do first: search for a solution, or define the problem clearly?</footer>
