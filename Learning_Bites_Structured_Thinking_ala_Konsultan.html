@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Bites - Structured Thinking ala Konsultan</title>
+    <style>
+        :root {
+            --dark: #020617;
+            --navy: #0B1F3A;
+            --slate: #0F172A;
+            --cyan: #22D3EE;
+            --amber: #F59E0B;
+            --text: #E2E8F0;
+            --muted: #94A3B8
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
+        body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+            background: #020617;
+            color: white;
+            font-family: "Segoe UI", Arial, sans-serif;
+            letter-spacing: -.01em
+        }
+
+        .deck {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 20% 10%, rgba(34, 211, 238, .13), transparent 30%), radial-gradient(circle at 90% 20%, rgba(245, 158, 11, .12), transparent 32%), linear-gradient(140deg, #020617 0%, #0B1F3A 62%, #0F172A 100%)
+        }
+
+        .slide {
+            position: absolute;
+            inset: 0;
+            padding: 38px 56px 70px;
+            opacity: 0;
+            transform: translateX(36px) scale(.985);
+            transition: .34s ease;
+            pointer-events: none;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            overflow: hidden
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            pointer-events: auto
+        }
+
+        .featured-case-study main {
+            min-height: 0;
+            overflow-y: auto;
+            padding-right: 12px;
+            scrollbar-color: rgba(34, 211, 238, .7) rgba(255, 255, 255, .08);
+            scrollbar-width: thin
+        }
+
+        .featured-case-study main::-webkit-scrollbar {
+            width: 8px
+        }
+
+        .featured-case-study main::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, .08);
+            border-radius: 999px
+        }
+
+        .featured-case-study main::-webkit-scrollbar-thumb {
+            background: rgba(34, 211, 238, .7);
+            border-radius: 999px
+        }
+
+        .practical-section main {
+            min-height: 0;
+            overflow-y: auto;
+            padding-right: 12px;
+            scrollbar-color: rgba(34, 211, 238, .7) rgba(255, 255, 255, .08);
+            scrollbar-width: thin
+        }
+
+        .practical-section main::-webkit-scrollbar {
+            width: 8px
+        }
+
+        .practical-section main::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, .08);
+            border-radius: 999px
+        }
+
+        .practical-section main::-webkit-scrollbar-thumb {
+            background: rgba(34, 211, 238, .7);
+            border-radius: 999px
+        }
+
+        .fragment {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: .28s ease;
+            filter: blur(2px)
+        }
+
+        .fragment.visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0)
+        }
+
+        h1 {
+            font-size: 58px;
+            line-height: .98;
+            margin: 0 0 12px;
+            font-weight: 900;
+            letter-spacing: -.045em
+        }
+
+        h2 {
+            font-size: 37px;
+            line-height: 1.04;
+            margin: 0 0 12px;
+            font-weight: 850;
+            letter-spacing: -.035em
+        }
+
+        h3 {
+            font-size: 23px;
+            line-height: 1.12;
+            margin: 0 0 8px;
+            font-weight: 800;
+            color: #DFFAFE
+        }
+
+        p,
+        li {
+            font-size: 20px;
+            line-height: 1.28;
+            color: var(--text);
+            margin: 7px 0
+        }
+
+        .small {
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        .kicker {
+            font-size: 14px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            font-weight: 850;
+            margin-bottom: 10px
+        }
+
+        .accent {
+            color: var(--amber)
+        }
+
+        .hero-sub {
+            font-size: 27px;
+            color: #FDE68A;
+            font-weight: 700
+        }
+
+        .prompt {
+            font-size: 34px;
+            line-height: 1.12;
+            color: #FDE68A;
+            font-weight: 900
+        }
+
+        .bigline {
+            font-size: 32px;
+            line-height: 1.15;
+            font-weight: 850;
+            color: #fff
+        }
+
+        .quote {
+            font-size: 34px;
+            line-height: 1.16;
+            font-weight: 880;
+            color: #FFF7ED;
+            border-left: 8px solid var(--amber);
+            padding-left: 20px;
+            margin: 18px 0
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0 0
+        }
+
+        .bullets li {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start
+        }
+
+        .bullets li:before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--amber);
+            margin-top: 12px;
+            box-shadow: 0 0 0 5px rgba(245, 158, 11, .16);
+            flex: 0 0 auto
+        }
+
+        .card {
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .15);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, .33);
+            backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 20px
+        }
+
+        .center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center
+        }
+
+        .grid2 {
+            display: grid;
+            grid-template-columns: 1.04fr .96fr;
+            gap: 22px;
+            align-items: center
+        }
+
+        .grid3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px
+        }
+
+        .grid5 {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px
+        }
+
+        .topbar,
+        .bottombar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px
+        }
+
+        .brand {
+            font-weight: 850;
+            color: #DFFAFE
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, .17);
+            background: rgba(255, 255, 255, .08);
+            padding: 8px 13px;
+            border-radius: 999px;
+            color: #E0F2FE;
+            font-size: 14px;
+            font-weight: 800
+        }
+
+        .footer-note {
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        .icon {
+            font-size: 48px;
+            filter: drop-shadow(0 14px 30px rgba(0, 0, 0, .35))
+        }
+
+        .story-title {
+            font-size: 34px;
+            font-weight: 900;
+            line-height: 1;
+            margin: 4px 0 10px
+        }
+
+        .note-box {
+            border-top: 1px solid rgba(255, 255, 255, .14);
+            background: rgba(15, 23, 42, .62);
+            border-radius: 18px;
+            padding: 11px 16px;
+            margin-top: 10px;
+            color: #CBD5E1;
+            font-size: 14px
+        }
+
+        .note-box b {
+            color: #FDE68A
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, var(--cyan), transparent);
+            margin: 12px 0
+        }
+
+        .flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 13px;
+            margin-top: 24px
+        }
+
+        .node {
+            padding: 16px 22px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, .10);
+            border: 1px solid rgba(255, 255, 255, .16);
+            font-weight: 850;
+            font-size: 23px
+        }
+
+        .arrow {
+            font-size: 30px;
+            color: var(--cyan);
+            font-weight: 900
+        }
+
+        .chip {
+            display: inline-block;
+            background: rgba(245, 158, 11, .16);
+            border: 1px solid rgba(245, 158, 11, .42);
+            color: #FDE68A;
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-weight: 800;
+            font-size: 15px;
+            margin: 5px
+        }
+
+        .mini {
+            font-size: 15px;
+            color: #CBD5E1
+        }
+
+        .habit-card {
+            display: grid;
+            grid-template-columns: .92fr 1.08fr;
+            gap: 22px;
+            align-items: stretch
+        }
+
+        .casebox {
+            background: rgba(245, 158, 11, .12);
+            border: 1px solid rgba(245, 158, 11, .4)
+        }
+
+        .answerbox {
+            background: rgba(255, 247, 237, .96);
+            color: #0F172A
+        }
+
+        .answerbox p,
+        .answerbox li {
+            color: #334155
+        }
+
+        .answerbox h3,
+        .answerbox h2 {
+            color: #0F172A
+        }
+
+        .tree {
+            display: grid;
+            gap: 9px;
+            margin-top: 12px
+        }
+
+        .tree-root {
+            text-align: center;
+            font-size: 23px;
+            font-weight: 900;
+            padding: 14px;
+            border-radius: 16px;
+            background: var(--amber);
+            color: #111827
+        }
+
+        .branches {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 9px
+        }
+
+        .branch {
+            padding: 14px 8px;
+            text-align: center;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, .10);
+            border: 1px solid rgba(255, 255, 255, .14);
+            font-weight: 800;
+            font-size: 16px
+        }
+
+        .template {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 9px;
+            margin-top: 12px
+        }
+
+        .template div {
+            min-height: 90px;
+            border-radius: 18px;
+            padding: 12px;
+            background: rgba(15, 23, 42, .88);
+            border: 1px solid rgba(15, 23, 42, .12)
+        }
+
+        .template b {
+            display: block;
+            color: #FDE68A;
+            font-size: 16px;
+            margin-bottom: 5px
+        }
+
+        .template span {
+            font-size: 13px;
+            color: #CBD5E1;
+            line-height: 1.25
+        }
+
+        .blank {
+            display: inline-block;
+            border-bottom: 3px solid #FDE68A;
+            min-width: 180px;
+            height: 28px
+        }
+
+        .media-card {
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, .33);
+            min-height: 590px;
+            display: flex;
+            flex-direction: column
+        }
+
+        .media-link {
+            display: block;
+            cursor: zoom-in;
+            position: relative
+        }
+
+        .media-link:after {
+            content: "Click to view full image";
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            background: rgba(2, 6, 23, .82);
+            color: #FDE68A;
+            border: 1px solid rgba(255, 255, 255, .24);
+            font-size: 12px;
+            font-weight: 800;
+            padding: 7px 10px;
+            border-radius: 999px;
+            opacity: 0;
+            transition: .18s
+        }
+
+        .media-link:hover:after {
+            opacity: 1
+        }
+
+        .media-card img {
+            width: 100%;
+            height: 390px;
+            object-fit: cover;
+            display: block;
+            background: #0F172A
+        }
+
+        .media-body {
+            padding: 16px
+        }
+
+        .stage {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: #FDE68A;
+            font-weight: 900;
+            margin-bottom: 6px
+        }
+
+        .source {
+            font-size: 11px;
+            color: #94A3B8;
+            margin-top: 8px
+        }
+
+        .fallback {
+            background: linear-gradient(135deg, #0F172A, #1E3A8A);
+            height: 390px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FDE68A;
+            font-weight: 900;
+            text-align: center;
+            padding: 20px
+        }
+
+        .nav {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            background: linear-gradient(180deg, transparent, rgba(2, 6, 23, .84));
+            z-index: 100
+        }
+
+        .btn {
+            border: 1px solid rgba(255, 255, 255, .16);
+            background: rgba(255, 255, 255, .08);
+            color: white;
+            border-radius: 16px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, .16)
+        }
+
+        .progress-wrap {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 5px;
+            background: rgba(255, 255, 255, .08);
+            z-index: 101
+        }
+
+        .progress {
+            height: 5px;
+            background: linear-gradient(90deg, var(--cyan), var(--amber));
+            width: 0
+        }
+
+        .slide-count {
+            font-size: 14px;
+            color: #CBD5E1
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, .95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            padding: 32px
+        }
+
+        .lightbox.active {
+            display: flex
+        }
+
+        .lightbox img {
+            max-width: 94vw;
+            max-height: 88vh;
+            object-fit: contain;
+            border-radius: 18px;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, .55)
+        }
+
+        .lightbox .close {
+            position: absolute;
+            top: 22px;
+            right: 28px;
+            border: 1px solid rgba(255, 255, 255, .24);
+            background: rgba(255, 255, 255, .1);
+            color: white;
+            border-radius: 999px;
+            padding: 10px 15px;
+            font-size: 18px;
+            cursor: pointer
+        }
+
+        .lightbox .caption {
+            position: absolute;
+            bottom: 18px;
+            left: 32px;
+            right: 32px;
+            color: #CBD5E1;
+            text-align: center;
+            font-size: 14px
+        }
+
+        @media print {
+
+            html,
+            body {
+                overflow: visible;
+                background: white
+            }
+
+            .deck {
+                background: white
+            }
+
+            .slide {
+                position: relative;
+                opacity: 1;
+                transform: none;
+                display: grid;
+                height: 100vh;
+                page-break-after: always;
+                background: #0B1F3A
+            }
+
+            .fragment {
+                opacity: 1;
+                transform: none;
+                filter: none
+            }
+
+            .nav,
+            .progress-wrap,
+            .lightbox {
+                display: none !important
+            }
+        }
+
+        @media(max-width:1050px) {
+            .slide {
+                padding: 38px 30px 70px
+            }
+
+            .grid2,
+            .grid3,
+            .grid5,
+            .habit-card,
+            .branches,
+            .template {
+                grid-template-columns: 1fr
+            }
+
+            .media-card {
+                min-height: auto
+            }
+
+            .media-card img,
+            .fallback {
+                height: 220px
+            }
+
+            h1 {
+                font-size: 42px
+            }
+
+            h2 {
+                font-size: 32px
+            }
+
+            p,
+            li {
+                font-size: 20px
+            }
+
+            .prompt {
+                font-size: 32px
+            }
+
+            .flow {
+                flex-direction: column
+            }
+
+            .arrow {
+                transform: rotate(90deg)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="deck">
+        <div class="progress-wrap">
+            <div class="progress" id="progress"></div>
+        </div>
+        <section class="slide active" data-title="Cover">
+            <div class="topbar"><span class="brand">Learning Bites</span><span class="pill">Pak Win review
+                    version</span></div>
+            <main class="center">
+                <div>
+                    <div class="kicker fragment">A practical thinking session</div>
+                    <h1 class="fragment">Structured Thinking<br><span class="accent">ala Konsultan</span></h1>
+                    <p class="hero-sub fragment">Dari Lapor Masalah ke Bawa Solusi</p>
+                    <p class="fragment">A short conversation on how to think clearer when problems appear.</p>
+                </div>
+            </main>
+            <footer class="bottombar"><span class="footer-note">Win Jonhson</span><span class="footer-note">RGE Lifelong
+                    Learning Centre Auditorium + Zoom</span></footer>
+        </section>
+        <section class="slide" data-title="Opening Mirror">
+            <div class="kicker">Opening mirror</div>
+            <main class="grid2">
+                <div>
+                    <h2 class="fragment">Raise your hand if you have ever...</h2>
+                    <ul class="bullets">
+                        <li class="fragment">Had problems in your life</li>
+                        <li class="fragment">Felt confused about the solution</li>
+                        <li class="fragment">Felt confused about how to convey the problem</li>
+                    </ul>
+                </div>
+                <div class="card fragment">
+                    <p class="bigline">Today is not about having fewer problems.</p>
+                    <div class="divider"></div>
+                    <p class="prompt">It is about thinking more clearly when problems appear.</p>
+                </div>
+            </main>
+            <footer class="note-box fragment"><b>Pak Win note:</b> Make this human and safe. The point is not “you are
+                wrong.” The point is “we all get stuck.”</footer>
+        </section>
+        <section class="slide featured-case-study" data-title="Apollo 13: Thinking Under Pressure">
+            <div class="kicker">Featured case study</div>
+            <main>
+                <div class="topbar">
+                    <div>
+                        <div class="icon">🚀</div>
+                        <div class="story-title">Apollo 13: Thinking Under Pressure</div>
+                    </div><span class="pill">Based on the 1995 film Apollo 13</span>
+                </div>
+                <div class="grid2">
+                    <div class="card fragment">
+                        <h3>The situation</h3>
+                        <p>In Ron Howard's <i>Apollo 13</i>, an oxygen-tank explosion cripples the spacecraft on the way to the Moon. Jim Lovell, Fred Haise, and Jack Swigert must abandon the mission and find a way home.</p>
+                        <p class="small">Movie reference: approx. 00:54-01:02, the explosion, the power-down, and Mission Control's first response. Timestamps can vary by release and playback version.</p>
+                    </div>
+                    <div class="card fragment">
+                        <h3>The leadership challenge</h3>
+                        <p>Gene Kranz and the flight controllers do not try to solve everything at once. They turn an overwhelming emergency into a sequence of specific questions, tests, decisions, and disciplined actions.</p>
+                        <div class="divider"></div>
+                        <p class="prompt">The goal changes from landing on the Moon to bringing the crew home alive.</p>
+                    </div>
+                </div>
+                <div class="card fragment" style="margin-top:18px">
+                    <h3>What the film shows</h3>
+                    <p>Technical expertise matters, but structured thinking makes expertise usable under pressure: define the problem, make uncertainty visible, separate workstreams, and keep every action tied to the survival objective.</p>
+                </div>
+            </main>
+            <footer class="note-box fragment"><b>Facilitator prompt:</b> At the moment the explosion happens, what should the team do first: search for a solution, or define the problem clearly?</footer>
+        </section>
+        <section class="slide featured-case-study" data-title="Apollo 13: Principles 1-4">
+            <div class="kicker">Apollo 13 in the movie</div>
+            <main>
+                <h2 class="fragment">Four thinking moves before action</h2>
+                <div class="grid2" style="margin-top:16px">
+                    <div class="card fragment">
+                        <h3>1. Define the problem</h3>
+                        <p><b>Movie reference: approx. 00:55-01:02.</b> The team moves beyond “we have a problem” to identify the life-threatening issue: the Service Module is damaged, power and oxygen are being lost, and the crew cannot complete the original mission.</p>
+                        <p class="small">Thinking move: name the real problem before naming a solution.</p>
+                    </div>
+                    <div class="card fragment">
+                        <h3>2. Separate facts from assumptions</h3>
+                        <p><b>Movie reference: approx. 01:03-01:15.</b> Mission Control reads telemetry, listens to the crew, and checks what is actually known. The controllers do not assume the first explanation is complete; they test the evidence and update the picture.</p>
+                        <p class="small">Thinking move: label what is measured, what is reported, and what is still uncertain.</p>
+                    </div>
+                    <div class="card fragment">
+                        <h3>3. Break it into parts</h3>
+                        <p><b>Movie reference: approx. 01:16-01:32.</b> Separate teams work on power, carbon dioxide, navigation, engine burns, communications, and the return trajectory while the astronauts manage immediate procedures.</p>
+                        <p class="small">Thinking move: decompose one crisis into manageable workstreams with clear owners.</p>
+                    </div>
+                    <div class="card fragment">
+                        <h3>4. Clarify the objective</h3>
+                        <p><b>Movie reference: approx. 01:10-01:20.</b> Kranz makes the priority explicit: “Failure is not an option.” In practical terms, the objective is not a successful lunar landing; it is a safe return of the crew.</p>
+                        <p class="small">Thinking move: let the objective determine the trade-offs.</p>
+                    </div>
+                </div>
+            </main>
+            <footer class="note-box fragment"><b>Facilitator prompt:</b> Ask participants which facts changed the mission objective, and which assumptions had to be challenged.</footer>
+        </section>
+        <section class="slide featured-case-study" data-title="Apollo 13: Principles 5-7">
+            <div class="kicker">Apollo 13 in the movie</div>
+            <main>
+                <h2 class="fragment">Three thinking moves that turn plans into survival</h2>
+                <div class="grid2" style="margin-top:16px">
+                    <div class="card fragment">
+                        <h3>5. Work within constraints</h3>
+                        <p><b>Movie reference: approx. 01:33-01:49.</b> The engineers build the carbon-dioxide “mailbox” using only materials available on the spacecraft. The square Command Module filter must work with the round Lunar Module connection.</p>
+                        <p class="small">Thinking move: treat time, energy, materials, safety, and compatibility as design requirements.</p>
+                    </div>
+                    <div class="card fragment">
+                        <h3>6. Test solutions systematically</h3>
+                        <p><b>Movie reference: approx. 01:45-02:00.</b> The ground team simulates the procedure, explains each step, and verifies the result before the crew executes it. The same disciplined approach is applied to navigation and the engine burns.</p>
+                        <p class="small">Thinking move: test the solution against reality before committing people to it.</p>
+                    </div>
+                    <div class="card fragment">
+                        <h3>7. Execute with discipline</h3>
+                        <p><b>Movie reference: approx. 02:00-02:17.</b> Lovell, Haise, and Swigert follow checklists, ration power, perform the burn, and re-enter under pressure. The plan succeeds because execution stays precise when conditions are frightening.</p>
+                        <p class="small">Thinking move: communicate clearly, follow the agreed sequence, and monitor the result.</p>
+                    </div>
+                    <div class="card fragment answerbox">
+                        <h3>The structured-thinking lesson</h3>
+                        <p>Under pressure, do not jump from alarm to action. Move from <b>problem</b> to <b>facts</b>, <b>parts</b>, <b>objective</b>, <b>constraints</b>, <b>tests</b>, and then disciplined <b>execution</b>.</p>
+                        <p class="small">Movie reference: approx. 02:17-02:20, splashdown and recovery.</p>
+                    </div>
+                </div>
+            </main>
+            <footer class="note-box fragment"><b>Facilitator prompt:</b> Which of the seven moves would be easiest to skip in a real business crisis? What control would help your team keep it?</footer>
+        </section>
+        <section class="slide" data-title="Core Question">
+            <main class="center">
+                <div>
+                    <div class="kicker fragment">The question for today</div>
+                    <h1 class="fragment">How Could I Become<br><span class="accent">A Structured Thinker?</span></h1>
+                    <p class="prompt fragment">What do great problem solvers do differently?</p>
+                </div>
+            </main>
+            <footer class="note-box fragment"><b>Pak Win note:</b> Pause here. Let participants sit with the question
+                before introducing the first case.</footer>
+        </section>
+        <section class="slide practical-section" data-title="Habit 1">
+            <div class="kicker">Habit 1</div>
+            <main class="habit-card">
+                <div class="card casebox fragment">
+                    <h2>The Chairman's Question</h2>
+                    <p>An urgent request arrives. A number is needed tomorrow morning. People begin collecting data.</p>
+                    <div class="divider"></div>
+                    <p class="prompt">What is really being asked?</p>
+                </div>
+                <div class="card answerbox fragment">
+                    <h2>Clarify the Context</h2>
+                    <p>Before asking <b>“what data do they need?”</b>, ask <b>“what decision is this supporting?”</b></p>
+                    <ul class="bullets">
+                        <li>What is the objective?</li>
+                        <li>Who is making the decision?</li>
+                        <li>What risks are being evaluated?</li>
+                        <li>What recommendation would help?</li>
+                    </ul>
+                </div>
+            </main>
+            <footer class="note-box fragment"><b>Facilitator prompt:</b> What should we clarify first? Let participants answer before introducing the decision and context.</footer>
+        </section>
+        <section class="slide practical-section" data-title="Habit 2">
+            <div class="kicker">Habit 2</div>
+            <main class="habit-card">
+                <div class="card casebox fragment">
+                    <h2>Estate A Is 15% Below Budget</h2>
+                    <p>Where would you investigate first?</p>
+                    <span class="chip">Area</span><span class="chip">Yield</span><span class="chip">Harvesting</span>
+                    <span class="chip">Weather</span><span class="chip">Crop recovery</span><span class="chip">Labour</span>
+                </div>
+                <div class="card answerbox fragment">
+                    <h2>Structure the Problem</h2>
+                    <p>Messy problems become manageable when structured.</p>
+                    <div class="tree">
+                        <div class="tree-root">Production Shortfall</div>
+                        <div class="branches">
+                            <div class="branch">Harvesting</div>
+                            <div class="branch">Yield</div>
+                            <div class="branch">Weather</div>
+                            <div class="branch">Labour</div>
+                            <div class="branch">Infrastructure</div>
+                        </div>
+                    </div>
+                    <p class="mini">Problem → Issue Tree → Hypothesis → Analysis → Recommendation</p>
+                </div>
+            </main>
+            <footer class="note-box fragment"><b>Facilitator prompt:</b> What structure prevents guessing? Invite a quick explanation before showing the issue tree.</footer>
+        </section>
+        <section class="slide practical-section" data-title="Habit 3">
+            <div class="kicker">Habit 3</div>
+            <main class="habit-card">
+                <div class="card casebox fragment">
+                    <h2>Production Is Down 8%</h2>
+                    <p>The issue needs to be escalated.</p>
+                    <p class="prompt">How would you make this decision-ready?</p>
+                    <p class="small">Let participants draft or say one sentence first.</p>
+                </div>
+                <div class="card answerbox fragment">
+                    <h2>Recommend the Action</h2>
+                    <p>Management often already knows the issue. What management needs is judgment.</p>
+                    <div class="template">
+                        <div><b>Situation</b><span>What happened?</span></div>
+                        <div><b>Insight</b><span>What does it mean?</span></div>
+                        <div><b>Recommendation</b><span>What should we do?</span></div>
+                        <div><b>Risk</b><span>What could go wrong?</span></div>
+                        <div><b>Next Step</b><span>Who does what by when?</span></div>
+                    </div>
+                </div>
+            </main>
+            <footer class="note-box fragment"><b>Facilitator prompt:</b> What would you send to management? Show how the template makes the escalation decision-ready.</footer>
+        </section>
+        <section class="slide practical-section" data-title="Participant Test ESG">
+            <div class="kicker">Participant test case</div>
+            <main class="grid2">
+                <div>
+                    <h1 class="fragment">ESG Non-Compliance Fine</h1>
+                    <p class="fragment">Operating Unit C receives a fine for water treatment regulation non-compliance.</p>
+                    <p class="prompt fragment">What would you recommend to the MD?</p>
+                </div>
+                <div class="card fragment">
+                    <h3>Use the three habits</h3>
+                    <ul class="bullets">
+                        <li>Clarify: What decision must leadership make?</li>
+                        <li>Structure: How should we break the problem down?</li>
+                        <li>Recommend: What action should we bring?</li>
+                    </ul>
+                    <div class="divider"></div>
+                    <p class="small">Prompt if needed: Who is impacted? Could this happen elsewhere? Why did controls fail? What should change system-wide?</p>
+                </div>
+            </main>
+            <footer class="note-box fragment"><b>Facilitator prompt:</b> Let participants work through the thinking before revealing the three habits.</footer>
+        </section>
+        <section class="slide practical-section" data-title="One Slide Toolkit">
+            <div class="kicker">Final takeaway</div>
+            <main>
+                <h2 class="fragment">Clarify → Structure → Recommend</h2>
+                <div class="grid3" style="margin-top:18px">
+                    <div class="card fragment">
+                        <h3>1. Before I start</h3>
+                        <p>What is the context? What decision is being supported?</p>
+                    </div>
+                    <div class="card fragment">
+                        <h3>2. Before I analyze</h3>
+                        <p>How can I break this problem into clear parts?</p>
+                    </div>
+                    <div class="card fragment">
+                        <h3>3. Before I report</h3>
+                        <p>What recommendation, risk, and next step will I include?</p>
+                    </div>
+                </div>
+                <div class="card fragment" style="margin-top:18px">
+                    <p class="bigline">Starting tomorrow...</p>
+                    <p>The next time I receive a problem, I will first <span class="blank"></span></p>
+                    <p>The next time I send a report, I will include <span class="blank"></span></p>
+                </div>
+            </main>
+            <footer class="note-box fragment"><b>Pak Win note:</b> Ask everyone to write silently first. Then invite two
+                or three volunteers.</footer>
+        </section>
+        <section class="slide practical-section" data-title="Closing">
+            <main class="center">
+                <div>
+                    <h1 class="fragment">Structured Thinking<br><span class="accent">ala Konsultan</span></h1>
+                    <p class="quote fragment">The people who grow fastest are not those who report the most problems.
+                    </p>
+                    <p class="quote fragment">They are the people who help solve them.</p>
+                    <p class="hero-sub fragment">Thank you</p>
+                </div>
+            </main>
+        </section>
+    </div>
+    <div class="lightbox" id="lightbox"><button class="close" id="lightboxClose">Close ×</button><img id="lightboxImg"
+            alt="Full image">
+        <div class="caption" id="lightboxCap"></div>
+    </div>
+    <div class="nav"><button class="btn" id="prevBtn">←</button><span class="slide-count" id="slideCount">1 /
+            1</span><span class="slide-count">Use ← →, Space, Home, End. Click any story image to enlarge.</span><button
+            class="btn" id="nextBtn">→</button></div>
+    <script>
+        (function () {
+            const slides = [...document.querySelectorAll('.slide')], progress = document.getElementById('progress'), count = document.getElementById('slideCount'); let i = 0, frag = 0;
+            const lightbox = document.getElementById('lightbox'), lightboxImg = document.getElementById('lightboxImg'), lightboxCap = document.getElementById('lightboxCap'), closeBtn = document.getElementById('lightboxClose');
+            function fragments() { return [...slides[i].querySelectorAll('.fragment')] }
+            function syncFragments() {
+                const fs = fragments();
+                fs.forEach((el, idx) => el.classList.toggle('visible', idx < frag));
+                if (frag > 0 && (slides[i].classList.contains('featured-case-study') || slides[i].classList.contains('practical-section'))) {
+                    fs[frag - 1].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                }
+            }
+            function render() {
+                slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+                const content = slides[i].querySelector('main');
+                if (content && (slides[i].classList.contains('featured-case-study') || slides[i].classList.contains('practical-section'))) content.scrollTop = 0;
+                frag = 0;
+                syncFragments();
+                progress.style.width = ((i + 1) / slides.length * 100) + '%';
+                count.textContent = (i + 1) + ' / ' + slides.length + ' · ' + (slides[i].dataset.title || '')
+            }
+            function next() { const fs = fragments(); if (frag < fs.length) { frag++; syncFragments(); return } if (i < slides.length - 1) { i++; render() } }
+            function prev() { if (frag > 0) { frag--; syncFragments(); return } if (i > 0) { i--; render(); frag = fragments().length; syncFragments() } }
+            function closeLightbox() { lightbox.classList.remove('active'); lightboxImg.src = ''; lightboxCap.textContent = '' }
+            document.getElementById('nextBtn').addEventListener('click', next); document.getElementById('prevBtn').addEventListener('click', prev);
+            document.querySelectorAll('.media-link').forEach(a => { a.addEventListener('click', e => { e.preventDefault(); lightboxImg.src = a.dataset.full || a.href; lightboxCap.textContent = a.dataset.caption || ''; lightbox.classList.add('active'); }); });
+            closeBtn.addEventListener('click', closeLightbox); lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+            document.addEventListener('keydown', e => { if (lightbox.classList.contains('active')) { if (e.key === 'Escape' || e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); closeLightbox(); } return; } if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); next() } if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); prev() } if (e.key === 'Home') { i = 0; render() } if (e.key === 'End') { i = slides.length - 1; render(); frag = fragments().length; syncFragments() } }); render();
+        })();
+    </script>
+</body>
+
+</html>
