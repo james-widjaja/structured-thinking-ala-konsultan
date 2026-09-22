@@ -57,6 +57,10 @@
             pointer-events: auto
         }
 
+        .slide>main {
+            min-width: 0
+        }
+
         .featured-case-study main {
             min-height: 0;
             overflow-y: auto;
@@ -70,7 +74,7 @@
             align-items: stretch
         }
 
-        .featured-case-study .grid2 > .card {
+        .featured-case-study .grid2>.card {
             height: 100%
         }
 
@@ -78,35 +82,55 @@
             align-items: stretch
         }
 
-        .featured-case-study .featured-overview-grid > .card {
+        .featured-case-study .featured-overview-grid>.card {
             height: 100%
         }
 
         .choice-layout {
-            min-height: 0
-        }
-
-        .choice-cards {
+            min-height: 0;
+            min-width: 0;
+            width: 100%;
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-rows: auto minmax(0, 1fr) minmax(0, 1fr);
             gap: 16px;
-            align-items: stretch;
-            height: min(34vh, 300px);
-            margin-top: 20px
+            align-items: stretch
         }
 
-        .choice-cards > .card,
+        .choice-layout>h2 {
+            grid-column: 1 / -1;
+            margin: 0
+        }
+
+        .choice-layout>* {
+            min-width: 0
+        }
+
+        .choice-layout>.card,
         .choice-answer {
             min-height: 0;
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center
         }
 
+        .choice-layout>.casebox {
+            grid-column: 1;
+            grid-row: 2
+        }
+
+        .choice-layout>.answerbox {
+            grid-column: 2;
+            grid-row: 2
+        }
+
         .choice-answer {
-            height: min(34vh, 300px);
-            align-self: start;
-            margin-top: calc(min(25.5vh, 230px) + 4px)
+            grid-column: 1 / -1;
+            grid-row: 3;
+            align-self: stretch;
+            margin: 0;
+            min-height: 0
         }
 
         .apollo-visual-grid {
@@ -115,19 +139,20 @@
         }
 
         .apollo-visual-grid .media-card {
-            height: min(48vh, 500px);
+            height: min(60vh, 620px);
             min-height: 0
         }
 
         .apollo-visual-grid .media-link {
-            height: 55%;
-            flex: 0 0 55%
+            height: 68%;
+            flex: 0 0 68%
         }
 
         .apollo-visual-grid .media-card img {
-            object-fit: contain;
+            object-fit: cover;
             object-position: center;
-            padding: 8px
+            padding: 0;
+            transform: scale(1.02)
         }
 
         .apollo-visual-grid .media-body {
@@ -193,7 +218,7 @@
             min-height: 0
         }
 
-        .recommend-layout > .card {
+        .recommend-layout>.card {
             min-height: min(46vh, 440px);
             display: flex;
             flex-direction: column;
@@ -240,20 +265,46 @@
 
         .video-card {
             min-height: 0;
-            height: min(56vh, 560px);
+            height: min(48vh, 460px);
             padding: 14px;
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 10px
         }
 
-        .video-frame {
+        .return-image {
             width: 100%;
+            max-width: 760px;
+            height: min(31vh, 290px);
             min-height: 0;
-            flex: 1;
-            border: 0;
+            flex: 0 1 auto;
             border-radius: 16px;
-            background: #000
+            background: #0F172A;
+            object-fit: contain;
+            object-position: center;
+            display: block
+        }
+
+        .video-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            background: #F59E0B;
+            color: #0F172A;
+            font-size: clamp(14px, 1vw, 18px);
+            font-weight: 850;
+            text-decoration: none;
+            box-shadow: 0 10px 28px rgba(245, 158, 11, .24);
+            transition: transform .18s ease, background .18s ease
+        }
+
+        .video-button:hover {
+            background: #FDE68A;
+            transform: translateY(-2px)
         }
 
         .featured-case-study main::-webkit-scrollbar {
@@ -884,21 +935,28 @@
                 height: 220px
             }
 
-            .choice-cards,
+            .choice-layout,
             .apollo-section .section-lead,
             .recommend-layout {
                 grid-template-columns: 1fr;
                 height: auto
             }
 
-            .choice-cards > .card,
+            .choice-layout>h2 {
+                grid-column: auto
+            }
+
+            .choice-layout>.card,
             .choice-answer,
-            .recommend-layout > .card {
+            .recommend-layout>.card {
                 min-height: 180px
             }
 
+            .choice-layout>.casebox,
+            .choice-layout>.answerbox,
             .choice-answer {
-                margin-top: 0
+                grid-column: auto;
+                grid-row: auto
             }
 
             .problem-grid {
@@ -961,66 +1019,117 @@
             <div class="kicker">Opening</div>
             <main class="center">
                 <div>
-                    <h1 class="fragment">Have you ever entered a meeting where everyone spent 30 minutes discussing a problem...</h1>
+                    <h1 class="fragment">Have you ever entered a meeting where everyone spent 30 minutes discussing a
+                        problem...</h1>
                     <p class="hero-sub fragment">...but nobody actually proposed a solution?</p>
+                    <p class="prompt fragment">Three weeks later, the same problem is back on the agenda — same slide,
+                        new date.</p>
                 </div>
             </main>
-            <footer class="note-box fragment"><b>Facilitator prompt:</b> Usually everyone laughs. Let the room react. Keep the moment human and recognizable before introducing the framework.</footer>
+            <footer class="note-box fragment"><b>Facilitator prompt:</b> Usually everyone laughs at the first line, then
+                goes quiet at the second. Let both reactions land before introducing the framework.</footer>
         </section>
         <section class="slide" data-title="Exercise: Problems or Solutions">
             <div class="kicker">Exercise</div>
-            <main class="grid2 choice-layout">
-                <div>
-                    <h2 class="fragment">In your company, which is easier?</h2>
-                    <div class="choice-cards">
-                        <div class="card casebox fragment"><h2>A</h2><p class="bigline">Finding problems</p></div>
-                        <div class="card answerbox fragment"><h2>B</h2><p class="bigline">Creating workable solutions</p></div>
-                    </div>
+            <main class="choice-layout">
+                <h2 class="fragment">In your company, which is easier?</h2>
+                <div class="card casebox fragment">
+                    <h2>A</h2>
+                    <p class="bigline">Finding problems</p>
+                </div>
+                <div class="card answerbox fragment">
+                    <h2>B</h2>
+                    <p class="bigline">Creating workable solutions</p>
                 </div>
                 <div class="card choice-answer fragment">
                     <p class="prompt">Organizations don't pay us to find problems.</p>
                     <p>Problems exist naturally. Organizations pay us to solve them.</p>
+                    <p class="small">Quick gut check: think of the last issue you personally raised. Did you also bring
+                        the next step — or did you leave that for someone else?</p>
                 </div>
             </main>
-            <footer class="note-box fragment"><b>Facilitator prompt:</b> Ask participants to vote A or B, then pause before revealing the message.</footer>
+            <footer class="note-box fragment"><b>Facilitator prompt:</b> Ask participants to vote A or B, then pause
+                before revealing the message.</footer>
         </section>
         <section class="slide" data-title="Transition: Thinking Under Pressure">
             <div class="kicker">Transition</div>
             <main class="center">
                 <div>
                     <h1 class="fragment">Imagine if your job performance affected not just a KPI.</h1>
-                    <p class="hero-sub fragment">Imagine if people's lives depended on your ability to think clearly under pressure.</p>
+                    <p class="hero-sub fragment">Imagine if people's lives depended on your ability to think clearly
+                        under pressure.</p>
                     <div class="divider fragment"></div>
                     <p class="prompt fragment">This actually happened on Apollo 13.</p>
                 </div>
             </main>
-            <footer class="note-box fragment"><b>Facilitator bridge:</b> Move from the everyday frustration of problem-focused meetings to a real survival situation.</footer>
+            <footer class="note-box fragment"><b>Facilitator bridge:</b> Move from the everyday frustration of
+                problem-focused meetings to a real survival situation.</footer>
         </section>
         <section class="slide featured-case-study" data-title="Apollo 13: Mission, Crisis, Return">
             <div class="kicker">Apollo 13</div>
             <main>
                 <div class="topbar">
-                    <div><div class="icon">🚀</div><div class="story-title">Mission → crisis → return</div></div>
+                    <div>
+                        <div class="icon">🚀</div>
+                        <div class="story-title">Mission → crisis → return</div>
+                    </div>
                     <span class="pill">The case in three visuals</span>
                 </div>
                 <div class="grid3 apollo-visual-grid">
                     <div class="media-card fragment"><a class="media-link"
-                            href="https://ts4.mm.bing.net/th?id=OIP.XkCwTAI-qDI3nvWqRJIbkAHaEo&pid=15.1"
-                            data-full="https://ts4.mm.bing.net/th?id=OIP.XkCwTAI-qDI3nvWqRJIbkAHaEo&pid=15.1"
-                            data-caption="Original mission: Apollo 13 was built to go to the Moon — to explore, test, and learn."><img loading="eager" referrerpolicy="no-referrer" src="https://ts4.mm.bing.net/th?id=OIP.XkCwTAI-qDI3nvWqRJIbkAHaEo&pid=15.1" alt="Apollo 13 original mission"></a>
-                        <div class="media-body"><div class="stage">Mission</div><p><strong>Reach the Moon.</strong></p><p>Explore. Test. Learn.</p></div>
+                            href="https://images-assets.nasa.gov/image/S70-38747/S70-38747~large.jpg"
+                            data-full="https://images-assets.nasa.gov/image/S70-38747/S70-38747~large.jpg"
+                            data-caption="Apollo 13 lifts off from Kennedy Space Center, 11 April 1970. Source: NASA."><img
+                                loading="eager" referrerpolicy="no-referrer"
+                                src="https://images-assets.nasa.gov/image/S70-38747/S70-38747~large.jpg"
+                                alt="Apollo 13 launch"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="fallback" style="display:none;position:absolute;inset:0;height:auto">🚀<br>Image
+                                unavailable — nasa.gov</div>
+                        </a>
+                        <div class="media-body">
+                            <div class="stage">Mission</div>
+                            <p><strong>Reach the Moon.</strong></p>
+                            <p>Explore. Test. Learn.</p>
+                            <p class="source">Photo: NASA</p>
+                        </div>
                     </div>
                     <div class="media-card fragment"><a class="media-link"
-                            href="https://ts3.mm.bing.net/th?id=OIP.ebrgOH6JyZtyl8oxvnJ_sgHaE0&pid=15.1"
-                            data-full="https://ts3.mm.bing.net/th?id=OIP.ebrgOH6JyZtyl8oxvnJ_sgHaE0&pid=15.1"
-                            data-caption="Crisis: an oxygen tank burst and put power, heat, water, and air at risk."><img loading="eager" referrerpolicy="no-referrer" src="https://ts3.mm.bing.net/th?id=OIP.ebrgOH6JyZtyl8oxvnJ_sgHaE0&pid=15.1" alt="Apollo 13 crisis"></a>
-                        <div class="media-body"><div class="stage">Crisis</div><p><strong>Oxygen tank burst.</strong></p><p>Life-support systems at risk.</p><p class="accent"><strong>Goal changed:</strong> Moon landing → crew home alive.</p></div>
+                            href="https://images-assets.nasa.gov/image/as13-58-8464/as13-58-8464~large.jpg"
+                            data-full="https://images-assets.nasa.gov/image/as13-58-8464/as13-58-8464~large.jpg"
+                            data-caption="The damaged Apollo 13 Service Module, photographed after jettison — an entire panel was blown away by the oxygen tank rupture. Source: NASA."><img
+                                loading="eager" referrerpolicy="no-referrer"
+                                src="https://images-assets.nasa.gov/image/as13-58-8464/as13-58-8464~large.jpg"
+                                alt="Apollo 13 crisis: damaged service module"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="fallback" style="display:none;position:absolute;inset:0;height:auto">⚠️<br>Image
+                                unavailable — nasa.gov</div>
+                        </a>
+                        <div class="media-body">
+                            <div class="stage">Crisis</div>
+                            <p><strong>Oxygen tank burst.</strong></p>
+                            <p>Life-support systems at risk.</p>
+                            <p class="accent"><strong>Goal changed:</strong> Moon landing → crew home alive.</p>
+                            <p class="source">Photo: NASA</p>
+                        </div>
                     </div>
                     <div class="media-card fragment"><a class="media-link"
-                            href="https://ts2.mm.bing.net/th?id=OIP.65JVJXlxSdD9iRbwyMW8yAHaK9&pid=15.1"
-                            data-full="https://ts2.mm.bing.net/th?id=OIP.65JVJXlxSdD9iRbwyMW8yAHaK9&pid=15.1"
-                            data-caption="Return: NASA teams and the astronauts worked together to bring the crew safely home to Earth."><img loading="eager" referrerpolicy="no-referrer" src="https://ts2.mm.bing.net/th?id=OIP.65JVJXlxSdD9iRbwyMW8yAHaK9&pid=15.1" alt="Apollo 13 safe return"></a>
-                        <div class="media-body"><div class="stage">Return</div><p><strong>One team.</strong></p><p>Safe return to Earth.</p></div>
+                            href="https://images-assets.nasa.gov/image/S70-35638/S70-35638~large.jpg"
+                            data-full="https://images-assets.nasa.gov/image/S70-35638/S70-35638~large.jpg"
+                            data-caption="Apollo 13 splashes down safely in the South Pacific, 17 April 1970. Source: NASA."><img
+                                loading="eager" referrerpolicy="no-referrer"
+                                src="https://images-assets.nasa.gov/image/S70-35638/S70-35638~large.jpg"
+                                alt="Apollo 13 safe splashdown"
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                            <div class="fallback" style="display:none;position:absolute;inset:0;height:auto">🌎<br>Image
+                                unavailable — nasa.gov</div>
+                        </a>
+                        <div class="media-body">
+                            <div class="stage">Return</div>
+                            <p><strong>One team.</strong></p>
+                            <p>Safe return to Earth.</p>
+                            <p class="source">Photo: NASA</p>
+                        </div>
                     </div>
                 </div>
             </main>
@@ -1031,54 +1140,134 @@
             <main class="apollo-section">
                 <h2 class="fragment">Do not confuse the event with the problem.</h2>
                 <div class="section-lead">
-                    <div class="card casebox fragment"><h3>Background</h3><p><strong>What is happening?</strong></p><p>Apollo 13 was on a Moon mission. Then a life-support failure changed the mission.</p></div>
-                    <div class="card answerbox fragment"><h3>Problem</h3><p><strong>Not just:</strong> “The oxygen tank burst.”</p><p><strong>Real question:</strong> how do we keep the crew alive and bring them home?</p></div>
+                    <div class="card casebox fragment">
+                        <h3>Background</h3>
+                        <p><strong>What is happening?</strong></p>
+                        <p>Apollo 13 was on a Moon mission. Then a life-support failure changed the mission.</p>
+                    </div>
+                    <div class="card answerbox fragment">
+                        <h3>Problem</h3>
+                        <p><strong>Not just:</strong> “The oxygen tank burst.”</p>
+                        <p><strong>Real question:</strong> how do we keep the crew alive and bring them home?</p>
+                    </div>
                 </div>
-                <div class="card fragment"><h3>Break it into parts — then prioritize.</h3><p class="small">Quiz: which problem is most life-threatening first?</p></div>
+                <div class="card fragment">
+                    <h3>Break it into parts — then prioritize.</h3>
+                    <p class="small">Quiz: which problem is most life-threatening first?</p>
+                </div>
                 <div class="problem-grid">
-                    <div class="card problem-card fragment"><h3>Navigation</h3><p>Find the path home.</p></div>
-                    <div class="card problem-card fragment"><h3>CO₂ build-up</h3><p>Prevent toxic air.</p></div>
-                    <div class="card problem-card fragment"><h3>Power loss</h3><p>Keep systems running.</p></div>
-                    <div class="card problem-card fragment"><h3>Oxygen leak</h3><p>Stop immediate loss of life.</p></div>
-                    <div class="card problem-card fragment"><h3>Lunar Module</h3><p>Use it as a lifeboat.</p></div>
+                    <div class="card problem-card fragment">
+                        <h3>Navigation</h3>
+                        <p>Find the path home.</p>
+                    </div>
+                    <div class="card problem-card fragment">
+                        <h3>CO₂ build-up</h3>
+                        <p>Prevent toxic air.</p>
+                    </div>
+                    <div class="card problem-card fragment">
+                        <h3>Power loss</h3>
+                        <p>Keep systems running.</p>
+                    </div>
+                    <div class="card problem-card fragment">
+                        <h3>Oxygen leak</h3>
+                        <p>Stop immediate loss of life.</p>
+                    </div>
+                    <div class="card problem-card fragment">
+                        <h3>Lunar Module</h3>
+                        <p>Use it as a lifeboat.</p>
+                    </div>
                 </div>
             </main>
-            <footer class="note-box fragment"><b>Facilitator cue:</b> Ask participants to rank the five cards before revealing the priority.</footer>
+            <footer class="note-box fragment"><b>Facilitator cue:</b> Ask participants to rank the five cards before
+                revealing the priority.</footer>
         </section>
         <section class="slide featured-case-study" data-title="Apollo 13: S = Structure">
             <div class="kicker">Next: S = Structure</div>
             <main class="apollo-section">
-                <div class="topbar"><div><div class="icon">🧭</div><div class="story-title">How did they get home?</div></div><span class="pill">Structure under pressure</span></div>
-                <div class="grid3 featured-overview-grid">
-                    <div class="card fragment"><h3>Clear roles</h3><p>Mission Control and the astronauts, each person owned a distinct task.</p><p class="small">No overlapping accountability.</p></div>
-                    <div class="card fragment"><h3>Constant alignment</h3><p>Mission Control and astronauts shared facts continuously.</p><p class="small">No silos.</p></div>
-                    <div class="card fragment"><h3>Next constraint</h3><p>They prioritized the most critical fact-based risk.</p><p class="small">Then moved to the next one.</p></div>
+                <div class="topbar">
+                    <div>
+                        <div class="icon">🧭</div>
+                        <div class="story-title">How did they get home?</div>
+                    </div><span class="pill">Structure under pressure</span>
                 </div>
-                <div class="card answerbox fragment"><p class="bigline">One team. Clear roles. Shared facts. Next critical constraint.</p></div>
+                <div class="grid3 featured-overview-grid">
+                    <div class="card fragment">
+                        <h3>Clear roles</h3>
+                        <p>Mission Control and the astronauts, each person owned a distinct task.</p>
+                        <p class="small">No overlapping accountability.</p>
+                    </div>
+                    <div class="card fragment">
+                        <h3>Constant alignment</h3>
+                        <p>Mission Control and astronauts shared facts continuously.</p>
+                        <p class="small">No silos.</p>
+                    </div>
+                    <div class="card fragment">
+                        <h3>Next constraint</h3>
+                        <p>They prioritized the most critical fact-based risk.</p>
+                        <p class="small">Then moved to the next one.</p>
+                    </div>
+                </div>
+                <div class="card answerbox fragment">
+                    <p class="bigline">One team. Clear roles. Shared facts. Next critical constraint.</p>
+                </div>
             </main>
-            <footer class="note-box fragment"><b>Facilitator cue:</b> The team did not solve everything at once.</footer>
+            <footer class="note-box fragment"><b>Facilitator cue:</b> The team did not solve everything at once.
+            </footer>
         </section>
         <section class="slide featured-case-study" data-title="Apollo 13: R = Recommend">
             <div class="kicker">Then: R = Recommend</div>
             <main class="apollo-section">
-                <div class="topbar"><div><div class="icon">🎯</div><div class="story-title">Make the solution executable</div></div><span class="pill">Good on paper is not enough</span></div>
+                <div class="topbar">
+                    <div>
+                        <div class="icon">🎯</div>
+                        <div class="story-title">Make the solution executable</div>
+                    </div><span class="pill">Good on paper is not enough</span>
+                </div>
                 <div class="recommend-layout">
-                    <div class="card casebox fragment"><h3>NASA engineers did not send a report saying:</h3><p class="bigline">“There is a problem.”</p><p>They designed solutions the astronauts could actually use with the materials already on board.</p></div>
-                    <div class="card answerbox fragment"><h3>Every recommendation needs:</h3><div class="recommend-steps"><div class="recommend-step"><b>1</b><span>Action someone can execute</span></div><div class="recommend-step"><b>2</b><span>Owner and timing</span></div><div class="recommend-step"><b>3</b><span>Risk and next check</span></div></div></div>
+                    <div class="card casebox fragment">
+                        <h3>NASA engineers did not send a report saying:</h3>
+                        <p class="bigline">“There is a problem.”</p>
+                        <p>They designed solutions the astronauts could actually use with the materials already on
+                            board.</p>
+                    </div>
+                    <div class="card answerbox fragment">
+                        <h3>Every recommendation needs:</h3>
+                        <div class="recommend-steps">
+                            <div class="recommend-step"><b>1</b><span>Action someone can execute</span></div>
+                            <div class="recommend-step"><b>2</b><span>Owner and timing</span></div>
+                            <div class="recommend-step"><b>3</b><span>Risk and next check</span></div>
+                        </div>
+                    </div>
                 </div>
             </main>
-            <footer class="note-box fragment"><b>Facilitator bridge:</b> Recommend the next workable move, not only the right analysis.</footer>
+            <footer class="note-box fragment"><b>Facilitator bridge:</b> Recommend the next workable move, not only the
+                right analysis.</footer>
         </section>
         <section class="slide featured-case-study" data-title="Apollo 13: Safe Return">
             <div class="kicker">The story concludes</div>
             <main class="apollo-section">
-                <div class="topbar"><div><div class="icon">🌎</div><div class="story-title">They made it home.</div></div><span class="pill">Clarify → Structure → Recommend</span></div>
+                <div class="topbar">
+                    <div>
+                        <div class="icon">🌎</div>
+                        <div class="story-title">They made it home.</div>
+                    </div><span class="pill">Clarify → Structure → Recommend</span>
+                </div>
                 <div class="card video-card fragment">
-                    <iframe class="video-frame" src="https://www.youtube.com/embed/s_7PfocHTmc?si=y8-Pc5Zq4M39gMXi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <p class="small">Apollo 13 splashdown footage — use the clip to close the case with the visible result: the crew returned safely to Earth.</p>
+                    <img class="return-image"
+                        src="https://images-assets.nasa.gov/image/S70-35638/S70-35638~large.jpg"
+                        alt="Apollo 13 crew splashdown, photographed by NASA"
+                        loading="eager">
+                    <a class="video-button" href="YTDown.com_YouTube_Apollo-13-1995-Re-Entry-Scene-11-11-Movi_Media_s_7PfocHTmc_001_1080p.mp4"
+                        target="_blank" rel="noopener noreferrer">
+                        ▶ Watch the re-entry &amp; splashdown
+                    </a>
+                    <p class="small">Apollo 13 splashdown footage — use the clip to close the case with the visible
+                        result: the crew returned safely to Earth.</p>
                 </div>
             </main>
-            <footer class="note-box fragment"><b>Closing message:</b> Clear thinking turns a crisis into the next safe move.</footer>
+            <footer class="note-box fragment"><b>Closing message:</b> Clear thinking turns a crisis into the next safe
+                move. <b>Tech check:</b> confirm the venue/Zoom connection can play this clip before the session — have
+                the splashdown story ready to narrate live as backup.</footer>
         </section>
         <section class="slide" data-title="CSR: Your Turn">
             <main class="center">
@@ -1088,7 +1277,8 @@
                     <p class="prompt fragment">Clarify → Structure → Recommend</p>
                 </div>
             </main>
-            <footer class="note-box fragment"><b>Facilitator bridge:</b> Ask participants to carry the CSR sequence into the Habit exercises that follow.</footer>
+            <footer class="note-box fragment"><b>Facilitator bridge:</b> Ask participants to carry the CSR sequence into
+                the Habit exercises that follow.</footer>
         </section>
         <section class="slide practical-section" data-title="Habit 1">
             <div class="kicker">Habit 1</div>
@@ -1101,7 +1291,8 @@
                 </div>
                 <div class="card answerbox fragment">
                     <h2>Clarify the Context</h2>
-                    <p>Before asking <b>“what data do they need?”</b>, ask <b>“what decision is this supporting?”</b></p>
+                    <p>Before asking <b>“what data do they need?”</b>, ask <b>“what decision is this supporting?”</b>
+                    </p>
                     <ul class="bullets">
                         <li>What is the objective?</li>
                         <li>Who is making the decision?</li>
@@ -1110,7 +1301,8 @@
                     </ul>
                 </div>
             </main>
-            <footer class="note-box fragment"><b>Facilitator prompt:</b> What should we clarify first? Let participants answer before introducing the decision and context.</footer>
+            <footer class="note-box fragment"><b>Facilitator prompt:</b> What should we clarify first? Let participants
+                answer before introducing the decision and context.</footer>
         </section>
         <section class="slide practical-section" data-title="Habit 2">
             <div class="kicker">Habit 2</div>
@@ -1119,7 +1311,8 @@
                     <h2>Estate A Is 15% Below Budget</h2>
                     <p>Where would you investigate first?</p>
                     <span class="chip">Area</span><span class="chip">Yield</span><span class="chip">Harvesting</span>
-                    <span class="chip">Weather</span><span class="chip">Crop recovery</span><span class="chip">Labour</span>
+                    <span class="chip">Weather</span><span class="chip">Crop recovery</span><span
+                        class="chip">Labour</span>
                 </div>
                 <div class="card answerbox fragment">
                     <h2>Structure the Problem</h2>
@@ -1137,14 +1330,15 @@
                     <p class="mini">Problem → Issue Tree → Hypothesis → Analysis → Recommendation</p>
                 </div>
             </main>
-            <footer class="note-box fragment"><b>Facilitator prompt:</b> What structure prevents guessing? Invite a quick explanation before showing the issue tree.</footer>
+            <footer class="note-box fragment"><b>Facilitator prompt:</b> What structure prevents guessing? Invite a
+                quick explanation before showing the issue tree.</footer>
         </section>
         <section class="slide practical-section" data-title="Habit 3">
             <div class="kicker">Habit 3</div>
             <main class="habit-card">
                 <div class="card casebox fragment">
-                    <h2>Production Is Down 8%</h2>
-                    <p>The issue needs to be escalated.</p>
+                    <h2>Attrition in the Digital Team Is Up 20%</h2>
+                    <p>Leadership wants an update before the next town hall.</p>
                     <p class="prompt">How would you make this decision-ready?</p>
                     <p class="small">Let participants draft or say one sentence first.</p>
                 </div>
@@ -1160,14 +1354,16 @@
                     </div>
                 </div>
             </main>
-            <footer class="note-box fragment"><b>Facilitator prompt:</b> What would you send to management? Show how the template makes the escalation decision-ready.</footer>
+            <footer class="note-box fragment"><b>Facilitator prompt:</b> What would you send to management? Show how the
+                template makes the escalation decision-ready.</footer>
         </section>
         <section class="slide practical-section" data-title="Participant Test ESG">
             <div class="kicker">Participant test case</div>
             <main class="grid2">
                 <div>
                     <h1 class="fragment">ESG Non-Compliance Fine</h1>
-                    <p class="fragment">Operating Unit C receives a fine for water treatment regulation non-compliance.</p>
+                    <p class="fragment">Operating Unit C receives a fine for water treatment regulation non-compliance.
+                    </p>
                     <p class="prompt fragment">What would you recommend to the MD?</p>
                 </div>
                 <div class="card fragment">
@@ -1178,10 +1374,12 @@
                         <li>Recommend: What action should we bring?</li>
                     </ul>
                     <div class="divider"></div>
-                    <p class="small">Prompt if needed: Who is impacted? Could this happen elsewhere? Why did controls fail? What should change system-wide?</p>
+                    <p class="small">Prompt if needed: Who is impacted? Could this happen elsewhere? Why did controls
+                        fail? What should change system-wide?</p>
                 </div>
             </main>
-            <footer class="note-box fragment"><b>Facilitator prompt:</b> Let participants work through the thinking before revealing the three habits.</footer>
+            <footer class="note-box fragment"><b>Facilitator prompt:</b> Let participants work through the thinking
+                before revealing the three habits.</footer>
         </section>
         <section class="slide practical-section" data-title="One Slide Toolkit">
             <div class="kicker">Final takeaway</div>
