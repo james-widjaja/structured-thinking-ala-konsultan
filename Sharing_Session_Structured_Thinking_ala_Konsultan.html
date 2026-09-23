@@ -57,6 +57,31 @@
             pointer-events: auto
         }
 
+        .csr-question-slide,
+        .csr-toolkit-slide,
+        .closing-slide {
+            padding: 58px 88px 82px
+        }
+
+        .csr-question-slide>main,
+        .closing-slide>main {
+            min-height: 0
+        }
+
+        .csr-toolkit-slide>main {
+            width: min(100%, 1540px);
+            justify-self: center;
+            align-self: center
+        }
+
+        .csr-toolkit-slide .grid3 {
+            margin-top: 24px !important
+        }
+
+        .csr-toolkit-slide>main>.card {
+            margin-top: 24px !important
+        }
+
         .slide>main {
             min-width: 0
         }
@@ -261,6 +286,114 @@
         .answerbox .recommend-step {
             background: rgba(15, 23, 42, .1);
             border-color: rgba(15, 23, 42, .18)
+        }
+
+        .reveal-prompts {
+            display: grid;
+            gap: 10px;
+            margin-top: 18px
+        }
+
+        .reveal-prompt {
+            margin: 0;
+            padding: 12px 16px;
+            border: 1px solid rgba(34, 211, 238, .35);
+            border-left: 5px solid var(--cyan);
+            border-radius: 12px;
+            background: rgba(34, 211, 238, .1);
+            color: #E0F2FE;
+            font-size: clamp(17px, 1.2vw, 23px);
+            font-weight: 750
+        }
+
+        .problem-card .reveal-prompts {
+            margin-top: 10px
+        }
+
+        .problem-card .reveal-prompt {
+            border-left-color: var(--amber);
+            border-color: rgba(245, 158, 11, .35);
+            background: rgba(245, 158, 11, .1);
+            color: #FEF3C7;
+            font-size: clamp(14px, .95vw, 18px)
+        }
+
+        .problem-card .answer-reveal {
+            margin: 6px 0 0;
+            color: #A7F3D0;
+            font-size: clamp(15px, 1vw, 19px)
+        }
+
+        .csr-flow {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 24px
+        }
+
+        .csr-flow-step,
+        .csr-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(34, 211, 238, .4);
+            border-radius: 18px;
+            background: linear-gradient(145deg, rgba(34, 211, 238, .18), rgba(15, 23, 42, .7));
+            box-shadow: 0 14px 32px rgba(2, 6, 23, .24)
+        }
+
+        .csr-flow-step {
+            padding: 18px 16px;
+            text-align: center
+        }
+
+        .csr-flow-step:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            right: -18px;
+            top: 50%;
+            color: var(--amber);
+            font-size: 28px;
+            font-weight: 900;
+            transform: translateY(-50%);
+            z-index: 1
+        }
+
+        .csr-letter {
+            display: block;
+            color: var(--amber);
+            font-size: clamp(30px, 2.5vw, 48px);
+            line-height: .9;
+            font-weight: 950
+        }
+
+        .csr-name {
+            display: block;
+            margin-top: 8px;
+            color: white;
+            font-size: clamp(18px, 1.35vw, 26px);
+            font-weight: 850
+        }
+
+        .csr-title {
+            color: #E0F2FE;
+            text-shadow: 0 0 22px rgba(34, 211, 238, .24)
+        }
+
+        .csr-card {
+            border-top: 5px solid var(--cyan);
+            padding: 20px
+        }
+
+        .csr-card:nth-child(2) {
+            border-top-color: #A78BFA
+        }
+
+        .csr-card:nth-child(3) {
+            border-top-color: var(--amber)
+        }
+
+        .csr-card h3 {
+            color: white
         }
 
         .video-card {
@@ -963,6 +1096,18 @@
                 grid-template-columns: 1fr
             }
 
+            .csr-flow {
+                grid-template-columns: 1fr
+            }
+
+            .csr-flow-step:not(:last-child)::after {
+                content: "↓";
+                right: 50%;
+                top: auto;
+                bottom: -22px;
+                transform: translateX(50%)
+            }
+
             .problem-card {
                 height: auto;
                 min-height: 100px
@@ -1019,23 +1164,25 @@
             <div class="kicker">Opening</div>
             <main class="center">
                 <div>
-                    <h1 class="fragment">Have you ever entered a meeting where everyone spent 30 minutes discussing a
-                        problem...</h1>
-                    <p class="hero-sub fragment">...but nobody actually proposed a solution?</p>
-                    <p class="prompt fragment">Three weeks later, the same problem is back on the agenda — same slide,
-                        new date.</p>
+                    <h1 class="fragment">Have you ever discussed a problem for 30 minutes?</h1>
+                    <p class="hero-sub fragment">What do you usually end the meeting with?</p>
+                    <div class="reveal-prompts">
+                        <p class="reveal-prompt fragment">Agreement on the problem?</p>
+                        <p class="reveal-prompt fragment">More problems arising?</p>
+                        <p class="reveal-prompt fragment">Or a solution to work on?</p>
+                    </div>
                 </div>
             </main>
-            <footer class="note-box fragment"><b>Facilitator prompt:</b> Usually everyone laughs at the first line, then
-                goes quiet at the second. Let both reactions land before introducing the framework.</footer>
+            <footer class="note-box fragment"><b>Facilitator prompt:</b> Pause after the first question. Ask the floor
+                what they usually end the meeting with, then reveal each triggering question one at a time.</footer>
         </section>
         <section class="slide" data-title="Exercise: Problems or Solutions">
             <div class="kicker">Exercise</div>
             <main class="choice-layout">
-                <h2 class="fragment">In your company, which is easier?</h2>
+                <h2 class="fragment">Which is easier?</h2>
                 <div class="card casebox fragment">
                     <h2>A</h2>
-                    <p class="bigline">Finding problems</p>
+                    <p class="bigline">Identifying problems</p>
                 </div>
                 <div class="card answerbox fragment">
                     <h2>B</h2>
@@ -1148,7 +1295,12 @@
                     <div class="card answerbox fragment">
                         <h3>Problem</h3>
                         <p><strong>Not just:</strong> “The oxygen tank burst.”</p>
-                        <p><strong>Real question:</strong> how do we keep the crew alive and bring them home?</p>
+                        <div class="reveal-prompts">
+                            <p class="reveal-prompt fragment">What do you think is the key issue here?</p>
+                            <p class="reveal-prompt fragment">What are the key questions we need to answer?</p>
+                            <p class="answer-reveal fragment"><strong>Answer:</strong> How do we keep the crew alive
+                                and bring them home?</p>
+                        </div>
                     </div>
                 </div>
                 <div class="card fragment">
@@ -1193,7 +1345,7 @@
                 <div class="grid3 featured-overview-grid">
                     <div class="card fragment">
                         <h3>Clear roles</h3>
-                        <p>Mission Control and the astronauts, each person owned a distinct task.</p>
+                        <p>Each person owned a distinct task.</p>
                         <p class="small">No overlapping accountability.</p>
                     </div>
                     <div class="card fragment">
@@ -1269,33 +1421,41 @@
                 move. <b>Tech check:</b> confirm the venue/Zoom connection can play this clip before the session — have
                 the splashdown story ready to narrate live as backup.</footer>
         </section>
-        <section class="slide" data-title="CSR: Your Turn">
+        <section class="slide csr-question-slide" data-title="CSR: Your Turn">
             <main class="center">
                 <div>
                     <div class="kicker fragment">The question for today</div>
                     <h1 class="fragment">How will you move<br><span class="accent">from problem to solution?</span></h1>
-                    <p class="prompt fragment">Clarify → Structure → Recommend</p>
+                    <div class="csr-flow fragment" aria-label="Clarify, Structure, Recommend">
+                        <div class="csr-flow-step"><span class="csr-letter">C</span><span
+                                class="csr-name">Clarify</span></div>
+                        <div class="csr-flow-step"><span class="csr-letter">S</span><span
+                                class="csr-name">Structure</span></div>
+                        <div class="csr-flow-step"><span class="csr-letter">R</span><span
+                                class="csr-name">Recommend</span></div>
+                    </div>
                 </div>
             </main>
             <footer class="note-box fragment"><b>Facilitator bridge:</b> Ask participants to carry the CSR sequence
                 into their own work.</footer>
         </section>
-        <section class="slide practical-section" data-title="One Slide Toolkit">
+        <section class="slide practical-section csr-toolkit-slide" data-title="One Slide Toolkit">
             <div class="kicker">Final takeaway</div>
             <main>
-                <h2 class="fragment">Clarify → Structure → Recommend</h2>
+                <h2 class="csr-title fragment">Clarify → Structure → Recommend</h2>
                 <div class="grid3" style="margin-top:18px">
-                    <div class="card fragment">
-                        <h3>1. Before I start</h3>
+                    <div class="csr-card fragment">
+                        <h3>1. Before I Start: <span class="accent">Clarify</span></h3>
                         <p>What is the context? What decision is being supported?</p>
                     </div>
-                    <div class="card fragment">
-                        <h3>2. Before I analyze</h3>
+                    <div class="csr-card fragment">
+                        <h3>2. Before I solve: <span class="accent">Structure</span></h3>
                         <p>How can I break this problem into clear parts?</p>
                     </div>
-                    <div class="card fragment">
-                        <h3>3. Before I report</h3>
-                        <p>What recommendation, risk, and next step will I include?</p>
+                    <div class="csr-card fragment">
+                        <h3>3. Before I report: <span class="accent">Recommend a workable solution</span> with next
+                                steps.</h3>
+                        <p>What recommendations, risk, and next step will I include?</p>
                     </div>
                 </div>
                 <div class="card fragment" style="margin-top:18px">
@@ -1307,7 +1467,7 @@
             <footer class="note-box fragment"><b>Pak Win note:</b> Ask everyone to write silently first. Then invite two
                 or three volunteers.</footer>
         </section>
-        <section class="slide practical-section" data-title="Closing">
+        <section class="slide practical-section closing-slide" data-title="Closing">
             <main class="center">
                 <div>
                     <h1 class="fragment">Structured Thinking<br><span class="accent">ala Konsultan</span></h1>
