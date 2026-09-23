@@ -63,6 +63,290 @@
             padding: 58px 88px 82px
         }
 
+        .transition-heading {
+            position: relative;
+            display: grid;
+            justify-items: center;
+            margin-bottom: 18px
+        }
+
+        .transition-heading .transition-base,
+        .transition-heading .transition-overlay {
+            grid-area: 1 / 1;
+            margin: 0;
+            white-space: nowrap
+        }
+
+        .transition-heading .transition-overlay {
+            z-index: 1
+        }
+
+        .transition-continuation {
+            margin: 0 0 18px
+        }
+
+        .cover-slide .fragment {
+            opacity: 1;
+            transform: none;
+            filter: none
+        }
+
+        .speaker-intro-slide {
+            grid-template-rows: 1fr;
+            grid-template-columns: 31% 69%;
+            padding: 0;
+            background: radial-gradient(circle at 20% 10%, rgba(34, 211, 238, .13), transparent 30%), radial-gradient(circle at 90% 20%, rgba(245, 158, 11, .12), transparent 32%), linear-gradient(140deg, #020617 0%, #0B1F3A 62%, #0F172A 100%)
+        }
+
+        .speaker-left {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 7vh 3vw;
+            background: linear-gradient(170deg, rgba(2, 6, 23, .72), rgba(11, 31, 58, .55));
+            border-right: 1px solid rgba(255, 255, 255, .1)
+        }
+
+        .speaker-left::before,
+        .speaker-left::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none
+        }
+
+        .speaker-left::before {
+            width: 220px;
+            height: 220px;
+            right: -70px;
+            top: -70px;
+            background: rgba(34, 211, 238, .1)
+        }
+
+        .speaker-left::after {
+            width: 170px;
+            height: 170px;
+            left: -40px;
+            bottom: -60px;
+            background: rgba(245, 158, 11, .08)
+        }
+
+        .speaker-photo {
+            position: relative;
+            width: clamp(130px, 11vw, 182px);
+            height: clamp(130px, 11vw, 182px);
+            margin-bottom: 20px;
+            border: 4px solid var(--amber);
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--slate);
+            box-shadow: 0 18px 44px rgba(0, 0, 0, .45)
+        }
+
+        .speaker-photo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center 18%
+        }
+
+        .speaker-name {
+            position: relative;
+            margin-bottom: 9px;
+            color: #fff;
+            font-size: clamp(25px, 2.1vw, 40px);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -.035em
+        }
+
+        .speaker-role {
+            position: relative;
+            margin-bottom: 6px;
+            color: #FDE68A;
+            font-size: clamp(14px, 1.05vw, 20px);
+            font-weight: 700;
+            line-height: 1.35
+        }
+
+        .speaker-org {
+            position: relative;
+            color: var(--muted);
+            font-size: clamp(12px, .85vw, 17px);
+            line-height: 1.5
+        }
+
+        .speaker-stats {
+            position: relative;
+            margin-top: auto;
+            margin-bottom: 40px;
+        }
+
+        .speaker-stats-label,
+        .speaker-about {
+            margin-bottom: 12px;
+            color: var(--cyan);
+            font-size: clamp(11px, .8vw, 16px);
+            font-weight: 850;
+            letter-spacing: .16em;
+            text-transform: uppercase
+        }
+
+        .speaker-stat-row {
+            display: flex;
+            gap: clamp(14px, 1.6vw, 28px)
+        }
+
+        .speaker-stat-number {
+            color: #fff;
+            font-size: clamp(21px, 1.7vw, 32px);
+            font-weight: 900;
+            line-height: 1
+        }
+
+        .speaker-stat-text {
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: clamp(10px, .7vw, 14px);
+            line-height: 1.35
+        }
+
+        .speaker-right {
+            display: flex;
+            min-width: 0;
+            flex-direction: column;
+            padding: 6vh 3.5vw 4vh
+        }
+
+        .speaker-lede {
+            max-width: 900px;
+            margin: 0 0 24px;
+            color: var(--text);
+            font-size: clamp(15px, 1.05vw, 21px);
+            line-height: 1.5
+        }
+
+        .speaker-lede b,
+        .speaker-card li b {
+            color: #fff;
+            font-weight: 800
+        }
+
+        .speaker-card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-bottom: 20px
+        }
+
+        .speaker-card {
+            min-width: 0;
+            padding: clamp(14px, 1.1vw, 22px);
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, .08);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, .33);
+            backdrop-filter: blur(16px)
+        }
+
+        .speaker-card-icon {
+            width: 33px;
+            height: 33px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 10px;
+            border: 1px solid rgba(245, 158, 11, .42);
+            border-radius: 10px;
+            background: rgba(245, 158, 11, .16);
+            color: #FDE68A;
+            font-size: 16px
+        }
+
+        .speaker-card h3 {
+            margin-bottom: 8px;
+            color: #DFFAFE;
+            font-size: clamp(14px, .95vw, 19px)
+        }
+
+        .speaker-card ul {
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
+
+        .speaker-card li {
+            position: relative;
+            margin-bottom: 4px;
+            padding-left: 15px;
+            color: var(--text);
+            font-size: clamp(12px, .82vw, 16px);
+            line-height: 1.5
+        }
+
+        .speaker-card li::before {
+            content: "";
+            position: absolute;
+            top: 7px;
+            left: 0;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--amber);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, .16)
+        }
+
+        .speaker-session {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-top: auto;
+            margin-bottom: 40px;
+            padding: 16px 22px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            border-left: 6px solid var(--amber);
+            border-radius: 18px;
+            background: rgba(15, 23, 42, .72)
+        }
+
+        .speaker-session-badge {
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--amber);
+            color: var(--slate);
+            font-size: clamp(10px, .7vw, 14px);
+            font-weight: 900;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            white-space: nowrap
+        }
+
+        .speaker-session-divider {
+            width: 1px;
+            height: 44px;
+            background: rgba(255, 255, 255, .18)
+        }
+
+        .speaker-session-title {
+            color: #fff;
+            font-size: clamp(16px, 1.15vw, 23px);
+            font-weight: 850;
+            line-height: 1.2
+        }
+
+        .speaker-session-meta {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: clamp(11px, .78vw, 15px);
+            line-height: 1.5
+        }
+
+        .speaker-session-meta span {
+            color: #FDE68A;
+            font-weight: 700
+        }
+
         .csr-question-slide>main,
         .closing-slide>main {
             min-height: 0
@@ -544,6 +828,13 @@
             color: #FDE68A;
             font-weight: 700
         }
+
+        .hero-sub-highlight {
+            font-size: clamp(60px, 3.4vw, 64px);
+            color: #FDE68A;
+            font-weight: 900
+        }
+
 
         .prompt {
             font-size: clamp(28px, 2.2vw, 42px);
@@ -1113,6 +1404,28 @@
                 min-height: 100px
             }
 
+            .speaker-intro-slide {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr;
+                overflow-y: auto
+            }
+
+            .speaker-left {
+                padding: 30px
+            }
+
+            .speaker-stats {
+                margin-top: 24px
+            }
+
+            .speaker-right {
+                padding: 30px
+            }
+
+            .speaker-card-grid {
+                grid-template-columns: 1fr
+            }
+
             h1 {
                 font-size: 42px
             }
@@ -1146,26 +1459,101 @@
         <div class="progress-wrap">
             <div class="progress" id="progress"></div>
         </div>
-        <section class="slide active" data-title="Cover">
+        <section class="slide active cover-slide" data-title="Cover">
             <div class="topbar"><span class="brand">Sharing Session</span><span class="pill">Pak Win review
                     version</span></div>
             <main class="center">
                 <div>
-                    <div class="kicker fragment">A practical thinking session</div>
-                    <h1 class="fragment">Structured Thinking<br><span class="accent">ala Konsultan</span></h1>
-                    <p class="hero-sub fragment">Dari Menemukan Masalah ke Menemukan Solusi</p>
-                    <p class="fragment">A short conversation on how to think clearer when problems appear.</p>
+                    <div class="kicker">A practical thinking session</div>
+                    <h1>Structured Thinking<br><span class="accent">ala Konsultan</span></h1>
+                    <p class="hero-sub">Dari Menemukan Masalah ke Menemukan Solusi</p>
+                    <p>A short conversation on how to think clearer when problems appear.</p>
                 </div>
             </main>
             <footer class="bottombar"><span class="footer-note">Win Jonhson</span><span class="footer-note">RGE Lifelong
                     Learning Centre Auditorium + Zoom</span></footer>
+        </section>
+        <section class="slide speaker-intro-slide" data-title="Meet Your Speaker">
+            <div class="speaker-left">
+                <div class="kicker">Meet your speaker</div>
+                <div class="speaker-photo">
+                    <img src="Win_Jonhson.jpg" alt="Win Jonhson">
+                </div>
+                <div class="speaker-name">Win Jonhson, <span class="accent">PhD</span></div>
+                <div class="speaker-role">Deputy Group Business Controller</div>
+                <div class="speaker-org">Asian Agri · RGE Group<br>Singapore PR · Indonesian Citizen</div>
+                <div class="speaker-stats">
+                    <div class="speaker-stats-label">At a glance</div>
+                    <div class="speaker-stat-row">
+                        <div>
+                            <div class="speaker-stat-number">3 yrs</div>
+                            <div class="speaker-stat-text">Strategy consulting<br>at BCG</div>
+                        </div>
+                        <div>
+                            <div class="speaker-stat-number">50+</div>
+                            <div class="speaker-stat-text">Students mentored<br>at NUS</div>
+                        </div>
+                        <div>
+                            <div class="speaker-stat-number">PhD</div>
+                            <div class="speaker-stat-text">Materials Science<br>&amp; Engineering</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="speaker-right">
+                <div class="speaker-about">About the speaker</div>
+                <p class="speaker-lede">
+                    A <b>strategy and operations leader</b> whose career bridges the consulting room and the factory
+                    floor. Win advises senior executives on corporate strategy, governance, and business transformation
+                    — combining <b>consulting-grade structured thinking</b> with a scientist's analytical rigour and
+                    real industrial execution experience.
+                </p>
+                <div class="speaker-card-grid">
+                    <div class="speaker-card">
+                        <div class="speaker-card-icon">🏢</div>
+                        <h3>Now at Asian Agri</h3>
+                        <ul>
+                            <li>Leads enterprise-wide 5-year strategic planning &amp; capital allocation</li>
+                            <li>Board-level performance transformation via KPI governance &amp; executive dashboards</li>
+                        </ul>
+                    </div>
+                    <div class="speaker-card">
+                        <div class="speaker-card-icon">📊</div>
+                        <h3>Consulting track record</h3>
+                        <ul>
+                            <li>Former Consultant, Boston Consulting Group (BCG)</li>
+                            <li>Corporate strategy, growth &amp; market entry across energy, mining, financial
+                                services, industrials</li>
+                        </ul>
+                    </div>
+                    <div class="speaker-card">
+                        <div class="speaker-card-icon">🎓</div>
+                        <h3>Academic foundation</h3>
+                        <ul>
+                            <li>PhD, Materials Science &amp; Engineering — National University of Singapore</li>
+                            <li>B.Eng (Hons), Mechanical Engineering — University of Sheffield</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="speaker-session">
+                    <div class="speaker-session-badge">Sharing Session</div>
+                    <div class="speaker-session-divider"></div>
+                    <div>
+                        <div class="speaker-session-title">Structured Thinking ala Konsultan</div>
+                        <div class="speaker-session-meta">
+                            <span>Jumat, 25 September 2026</span> · 10.45 – 12.00 WIB · RGE Lifelong Learning Centre
+                            Auditorium + Zoom
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
         <section class="slide" data-title="Opening: Feel the Friction">
             <div class="kicker">Opening</div>
             <main class="center">
                 <div>
                     <h1 class="fragment">Have you ever discussed a problem for hours?</h1>
-                    <p class="hero-sub fragment">What do you usually end the meeting with?</p>
+                    <p class="hero-sub fragment">What do you usually end the discussion with?</p>
                     <div class="reveal-prompts">
                         <p class="reveal-prompt fragment">Agreement that there is a problem?</p>
                         <p class="reveal-prompt fragment">More problems arising?</p>
@@ -1174,7 +1562,7 @@
                 </div>
             </main>
             <footer class="note-box fragment"><b>Facilitator prompt:</b> Pause after the first question. Ask the floor
-                what they usually end the meeting with, then reveal each triggering question one at a time.</footer>
+                what they usually end the discussion with, then reveal each triggering question one at a time.</footer>
         </section>
         <section class="slide" data-title="Exercise: Problems or Solutions">
             <div class="kicker">Exercise</div>
@@ -1198,14 +1586,20 @@
             <footer class="note-box fragment"><b>Facilitator prompt:</b> Ask participants to vote A or B, then pause
                 before revealing the message.</footer>
         </section>
-        <section class="slide" data-title="Transition: Thinking Under Pressure">
+        <section class="slide transition-slide" data-title="Transition: Thinking Under Pressure">
             <div class="kicker">Transition</div>
             <main class="center">
                 <div>
-                    <h1 class="fragment">Imagine if your job performance not only affecting company's KPI...</h1>
-                    <p class="hero-sub fragment">...but also people's lives</p>
-                    <div class="divider fragment"></div>
-                    <p class="prompt fragment">This actually happened on Apollo 13.</p>
+                    <h1 class="transition-heading">
+                        <span class="transition-base fragment">Your job performance affects company's KPI</span>
+                        <span class="transition-overlay fragment">Imagine if your job performance not only <br> affects
+                            company's KPI...</span>
+                    </h1>
+                    <p class="hero-sub-highlight transition-continuation fragment">but also affects people's lives</p>
+                    <div class="fragment">
+                        <div class="divider"></div>
+                        <p class="prompt">This actually happened on Apollo 13.</p>
+                    </div>
                 </div>
             </main>
             <footer class="note-box fragment"><b>Facilitator bridge:</b> Move from the everyday frustration of
@@ -1296,8 +1690,9 @@
                         <p><strong>Not just:</strong> “The oxygen tank burst.”</p>
                         <div class="reveal-prompts">
                             <p class="reveal-prompt fragment">What do you think is the key issue here?</p>
-                            <p class="answer-reveal fragment"><strong>Answer:</strong> How do we keep the crew alive
-                                and bring them home?</p>
+                            <p class="answer-reveal fragment"><strong>Answer:</strong> <br>How do we keep the crew alive
+                                and immediately bring them home?</p>
+                            <p class="answer-reveal fragment"><strong>Goal changed:</strong> Moon landing → Safe return to Earth</p>
                         </div>
                     </div>
                 </div>
@@ -1338,7 +1733,7 @@
                     <div>
                         <div class="icon">🧭</div>
                         <div class="story-title">How do we keep the crew alive
-                                and bring them home?</div>
+                                and immediately <br> bring them home?</div>
                     </div><span class="pill">Structure under pressure</span>
                 </div>
                 <div class="grid3 featured-overview-grid">
@@ -1493,6 +1888,12 @@
             function syncFragments() {
                 const fs = fragments();
                 fs.forEach((el, idx) => el.classList.toggle('visible', idx < frag));
+                if (slides[i].classList.contains('transition-slide')) {
+                    fs.forEach((el, idx) => {
+                        const visible = frag === 1 ? idx === 0 : frag > 1 && idx > 0 && idx < frag;
+                        el.classList.toggle('visible', visible);
+                    });
+                }
                 if (frag > 0 && (slides[i].classList.contains('featured-case-study') || slides[i].classList.contains('practical-section'))) {
                     fs[frag - 1].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
                 }
